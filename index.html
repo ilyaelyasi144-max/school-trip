@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>My Unforgettable and Crazy School Trip</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    /* لکه‌های نرم و محو آبی و سبز که به آرامی در پس‌زمینه سفید محو می‌شوند */
+    background:
+        radial-gradient(circle 480px at 8% 6%, rgba(59, 130, 246, 0.09) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 75%),
+        radial-gradient(circle 560px at 95% 12%, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.03) 40%, transparent 75%),
+        radial-gradient(circle 520px at 4% 55%, rgba(34, 197, 94, 0.07) 0%, rgba(34, 197, 94, 0.03) 42%, transparent 75%),
+        radial-gradient(circle 600px at 100% 62%, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 40%, transparent 75%),
+        radial-gradient(circle 500px at 15% 96%, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0.03) 42%, transparent 75%),
+        radial-gradient(circle 540px at 92% 98%, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.03) 40%, transparent 75%),
+        #ffffff;
+    color:#334155;
+    font-family:"Segoe UI",Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.page{
+    width:min(1050px,94vw);
+    margin:0 auto;
+    padding:54px 0 100px;
+}
+
+.title{
+    text-align:center;
+    font-size:clamp(25px,4vw,40px);
+    font-weight:650;
+    letter-spacing:-.7px;
+    color:#172033;
+    margin:0 0 34px;
+}
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.video-shell{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#101828;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:
+        0 24px 70px rgba(15,23,42,.15),
+        0 3px 10px rgba(15,23,42,.08);
+}
+
+video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
+    background:#101828;
+}
+
+/* =========================================================
+   CUSTOM VIDEO CONTROLS
+========================================================= */
+
+.video-controls{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:14px;
+    padding:10px 13px;
+    border-radius:15px;
+
+    background:rgba(15,23,42,.74);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    opacity:0;
+    transform:translateY(8px);
+    transition:.3s ease;
+}
+
+.video-shell:hover .video-controls,
+.video-shell.controls-visible .video-controls{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.control-btn{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:10px;
+    background:transparent;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    transition:.2s ease;
+}
+
+.control-btn:hover{
+    background:rgba(255,255,255,.12);
+}
+
+.time{
+    color:#e2e8f0;
+    font-size:12px;
+    min-width:92px;
+    text-align:center;
+    user-select:none;
+}
+
+.progress-wrap{
+    flex:1;
+    height:20px;
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+}
+
+.progress{
+    position:relative;
+    width:100%;
+    height:4px;
+    background:rgba(255,255,255,.22);
+    border-radius:20px;
+}
+
+.progress-fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    background:#60a5fa;
+}
+
+.progress-dot{
+    position:absolute;
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:white;
+    top:50%;
+    left:0;
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 12px rgba(96,165,250,.8);
+}
+
+.speed{
+    height:34px;
+    border:0;
+    border-radius:9px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    padding:0 8px;
+    outline:none;
+    cursor:pointer;
+}
+
+.speed option{
+    background:#172033;
+}
+
+.download{
+    text-decoration:none;
+}
+
+/* =========================================================
+   AUDIO WAVE
+========================================================= */
+
+.wave-section{
+    position:relative;
+    height:118px;
+    margin:18px 0 5px;
+    overflow:hidden;
+}
+
+.wave-center-line{
+    position:absolute;
+    left:7%;
+    right:7%;
+    top:50%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(59,130,246,.32) 8%,
+        rgba(59,130,246,.55) 50%,
+        rgba(59,130,246,.32) 92%,
+        transparent
+    );
+}
+
+#waveCanvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+}
+
+/* =========================================================
+   TRANSCRIPT
+========================================================= */
+
+.transcript-wrapper{
+    position:relative;
+    width:min(790px,100%);
+    height:370px;
+    margin:8px auto 0;
+    overflow:hidden;
+}
+
+/* Fade at top and bottom */
+.transcript-wrapper::before,
+.transcript-wrapper::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    height:100px;
+    z-index:20;
+    pointer-events:none;
+}
+
+.transcript-wrapper::before{
+    top:0;
+    background:linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        rgba(255,255,255,.92) 25%,
+        transparent 100%
+    );
+}
+
+.transcript-wrapper::after{
+    bottom:0;
+    background:linear-gradient(
+        to top,
+        #ffffff 0%,
+        rgba(255,255,255,.92) 25%,
+        transparent 100%
+    );
+}
+
+#transcript{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    padding:165px 20px 170px;
+    transition:transform 1s cubic-bezier(.16,1,.3,1);
+}
+
+.sentence{
+    position:relative;
+    display:block;
+    width:fit-content;
+    max-width:100%;
+    margin:0 auto 28px;
+    padding:4px 10px;
+
+    text-align:center;
+    font-size:clamp(18px,2.1vw,25px);
+    line-height:1.75;
+    font-weight:500;
+
+    color:rgba(71,85,105,.42);
+
+    cursor:pointer;
+
+    transition:
+        color .9s cubic-bezier(.16,1,.3,1),
+        opacity .9s ease,
+        transform .9s cubic-bezier(.16,1,.3,1),
+        text-shadow .9s ease;
+}
+
+.sentence:hover{
+    color:rgba(51,65,85,.72);
+}
+
+.sentence.past{
+    color:rgba(71,85,105,.20);
+}
+
+.sentence.near-past{
+    color:rgba(71,85,105,.46);
+}
+
+.sentence.active{
+    color:#172033;
+    transform:scale(1.035);
+    text-shadow:
+        0 0 1px rgba(255,255,255,.8),
+        0 0 15px rgba(59,130,246,.22);
+}
+
+.sentence.near-future{
+    color:rgba(71,85,105,.40);
+}
+
+.sentence.future{
+    color:rgba(71,85,105,.19);
+}
+
+/* Blue cloud under active sentence */
+.sentence.active::after{
+    content:"";
+    position:absolute;
+    z-index:-1;
+
+    left:6%;
+    right:6%;
+    bottom:-12px;
+    height:34px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(59,130,246,.27) 0%,
+            rgba(59,130,246,.17) 30%,
+            rgba(59,130,246,.07) 58%,
+            transparent 78%
+        );
+
+    filter:blur(10px);
+    opacity:1;
+
+    animation:cloudBreath 2.8s ease-in-out infinite;
+}
+
+@keyframes cloudBreath{
+    0%,100%{
+        transform:scaleX(.92);
+        opacity:.72;
+    }
+    50%{
+        transform:scaleX(1.08);
+        opacity:1;
+    }
+}
+
+/* =========================================================
+   SMALL INFO
+========================================================= */
+
+.info{
+    margin-top:28px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.info span{
+    color:#64748b;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+    .page{
+        width:94vw;
+        padding-top:25px;
+    }
+
+    .title{
+        margin-bottom:22px;
+    }
+
+    .video-shell{
+        border-radius:16px;
+    }
+
+    .video-controls{
+        left:6px;
+        right:6px;
+        bottom:6px;
+        gap:2px;
+        padding:4px 6px;
+        border-radius:11px;
+    }
+
+    .control-btn{
+        width:26px;
+        height:26px;
+        font-size:12px;
+        border-radius:7px;
+    }
+
+    .time{
+        min-width:58px;
+        font-size:9px;
+        letter-spacing:-.2px;
+    }
+
+    .progress-wrap{
+        height:16px;
+    }
+
+    .speed{
+        height:24px;
+        font-size:9px;
+        padding:0 3px;
+        border-radius:6px;
+    }
+
+    .wave-section{
+        height:90px;
+        margin-top:10px;
+        margin-bottom:0;
+    }
+
+    .transcript-wrapper{
+        height:260px;
+        margin-top:-8px;
+    }
+
+    .transcript-wrapper::before,
+    .transcript-wrapper::after{
+        height:65px;
+    }
+
+    #transcript{
+        padding-top:105px;
+        padding-bottom:110px;
+    }
+
+    .sentence{
+        margin-bottom:22px;
+        font-size:18px;
+        line-height:1.7;
+    }
+}
+
+@media(max-width:380px){
+
+    .video-controls{
+        gap:1px;
+        padding:3px 5px;
+    }
+
+    .control-btn{
+        width:23px;
+        height:23px;
+        font-size:11px;
+    }
+
+    .time{
+        min-width:46px;
+        font-size:8px;
+    }
+
+    .speed{
+        height:22px;
+        font-size:8px;
+        padding:0 2px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <h1 class="title">My Unforgettable and Crazy School Trip</h1>
+
+    <!-- =====================================================
+         VIDEO
+    ====================================================== -->
+
+    <div class="video-shell" id="videoShell">
+
+        <video
+            id="video"
+            preload="metadata"
+            playsinline
+            src="https://cdn.imgurl.ir/uploads/c05514_My_Unforgettable_and_Crazy_School_Trip_compressed.mp4">
+        </video>
+
+        <div class="video-controls">
+
+            <button class="control-btn" id="playBtn" title="Play / Pause">
+                ▶
+            </button>
+
+            <button class="control-btn" id="backBtn" title="Back 10 seconds">
+                ↶
+            </button>
+
+            <button class="control-btn" id="forwardBtn" title="Forward 10 seconds">
+                ↷
+            </button>
+
+            <div class="progress-wrap" id="progressWrap">
+                <div class="progress">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-dot" id="progressDot"></div>
+                </div>
+            </div>
+
+            <div class="time" id="timeDisplay">
+                0:00 / 0:00
+            </div>
+
+            <select class="speed" id="speed">
+                <option value=".5">0.5×</option>
+                <option value=".75">0.75×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.25">1.25×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2×</option>
+            </select>
+
+            <button class="control-btn" id="fullscreenBtn" title="Fullscreen">
+                ⛶
+            </button>
+
+            <!-- Update download link -->
+            <a
+                class="control-btn download"
+                href="https://cdn.imgurl.ir/uploads/c05514_My_Unforgettable_and_Crazy_School_Trip_compressed.mp4"
+                download
+                title="Download video">
+                ↓
+            </a>
+
+        </div>
+    </div>
+
+    <!-- =====================================================
+         WAVE
+    ====================================================== -->
+
+    <div class="wave-section">
+        <canvas id="waveCanvas"></canvas>
+        <div class="wave-center-line"></div>
+    </div>
+
+    <!-- =====================================================
+         TRANSCRIPT
+    ====================================================== -->
+
+    <div class="transcript-wrapper">
+        <div id="transcript"></div>
+    </div>
+
+    <div class="info">
+        Click any sentence to jump to that part of the video
+        <span>•</span>
+        Space / Arrow keys also work
+    </div>
+
+</div>
+
+
+<script>
+/* =========================================================
+   VIDEO
+========================================================= */
+
+const video = document.getElementById("video");
+const shell = document.getElementById("videoShell");
+const playBtn = document.getElementById("playBtn");
+const backBtn = document.getElementById("backBtn");
+const forwardBtn = document.getElementById("forwardBtn");
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const speed = document.getElementById("speed");
+const progressWrap = document.getElementById("progressWrap");
+const progressFill = document.getElementById("progressFill");
+const progressDot = document.getElementById("progressDot");
+const timeDisplay = document.getElementById("timeDisplay");
+
+
+function formatTime(seconds){
+
+    if(!Number.isFinite(seconds)){
+        return "0:00";
+    }
+
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+
+    return mins + ":" + String(secs).padStart(2,"0");
+}
+
+
+function updateControls(){
+
+    if(!video.duration) return;
+
+    const percent = (video.currentTime / video.duration) * 100;
+
+    progressFill.style.width = percent + "%";
+    progressDot.style.left = percent + "%";
+
+    timeDisplay.textContent =
+        formatTime(video.currentTime) +
+        " / " +
+        formatTime(video.duration);
+}
+
+
+function togglePlay(){
+
+    if(video.paused){
+        video.play();
+    }else{
+        video.pause();
+    }
+}
+
+
+playBtn.addEventListener("click",togglePlay);
+
+video.addEventListener("play",()=>{
+    playBtn.textContent="❚❚";
+});
+
+video.addEventListener("pause",()=>{
+    playBtn.textContent="▶";
+});
+
+video.addEventListener("timeupdate",updateControls);
+video.addEventListener("loadedmetadata",updateControls);
+
+backBtn.addEventListener("click",()=>{
+    video.currentTime=Math.max(0,video.currentTime-10);
+});
+
+forwardBtn.addEventListener("click",()=>{
+    video.currentTime=Math.min(video.duration,video.currentTime+10);
+});
+
+speed.addEventListener("change",()=>{
+    video.playbackRate=parseFloat(speed.value);
+});
+
+fullscreenBtn.addEventListener("click",()=>{
+
+    if(document.fullscreenElement){
+        document.exitFullscreen();
+    }else{
+        shell.requestFullscreen?.();
+    }
+
+});
+
+
+progressWrap.addEventListener("click",(e)=>{
+
+    const rect=progressWrap.getBoundingClientRect();
+    const ratio=(e.clientX-rect.left)/rect.width;
+
+    if(video.duration){
+        video.currentTime=Math.max(
+            0,
+            Math.min(video.duration,ratio*video.duration)
+        );
+    }
+
+});
+
+
+shell.addEventListener("mousemove",()=>{
+    shell.classList.add("controls-visible");
+
+    clearTimeout(shell.hideTimer);
+
+    shell.hideTimer=setTimeout(()=>{
+        if(!video.paused){
+            shell.classList.remove("controls-visible");
+        }
+    },2200);
+});
+
+
+/* Tap-to-toggle controls on touch devices (no hover available) */
+
+shell.addEventListener("touchstart",(e)=>{
+
+    if(e.target.closest(".video-controls")){
+        return;
+    }
+
+    shell.classList.toggle("controls-visible");
+
+    clearTimeout(shell.hideTimer);
+
+    if(shell.classList.contains("controls-visible")){
+        shell.hideTimer=setTimeout(()=>{
+            if(!video.paused){
+                shell.classList.remove("controls-visible");
+            }
+        },3000);
+    }
+
+},{passive:true});
+
+
+/* Double click video */
+
+video.addEventListener("dblclick",(e)=>{
+
+    const rect=video.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+
+    if(x<rect.width/2){
+        video.currentTime=Math.max(0,video.currentTime-10);
+    }else{
+        video.currentTime=Math.min(video.duration,video.currentTime+10);
+    }
+
+});
+
+
+/* =========================================================
+   TRANSCRIPT DATA
+========================================================= */
+
+const transcriptText = [
+
+`Hi everyone! My name is Ilia. Today I want to tell you about our school trip to Mashhad. It was full of crazy moments and unexpected things!`,
+
+`It started in 8th grade. The school said, “We will take you to Mashhad.” But every time we asked, they had an excuse: “Wait until after the exams,” “It’s too cold, let it get warmer,” or “Wait until after the holidays!”`,
+
+`Summer came, and nobody answered us. They completely tricked us!`,
+
+`Next year, in 9th grade, I was on the volleyball team.`,
+
+`We had a friendly match in Mashhad on Wednesday. But I had an online English exam in the middle of the trip!`,
+
+`So, I asked my teacher, Mr. Miller, to change the date. He was nice and moved it to next Thursday. I was so happy!`,
+
+`But just three days later, our school suddenly announced: “We are making up for last year’s trip! We are going to Mashhad from Wednesday to Saturday!”`,
+
+`I had to beg Mr. Miller again! Luckily, he changed it one more time.`,
+
+`On Wednesday, October 16, we were very stressed about missing the 2:00 PM train.`,
+
+`Our planning was perfect, and we arrived at 1:30 PM. But the train was delayed and left at 4:00 PM!`,
+
+`Our train trip was wild. Our group had 12 students, but we only had 8 seats!`,
+
+`So, we sat very close to each other. A few minutes later, a nice man brought us a free bottle of water.`,
+
+`Then, he brought tea and free coffee for everyone. So, my friends and I drank twenty cups each!`,
+
+`They tasted delicious! But a few minutes later, the same man came back with a card reader… Yes, the “free” coffee was expensive, very expensive!`,
+
+`After that my unlucky friend Leo went to the bathroom.`,
+
+`You probably know that train water pumps only work when the train is moving.`,
+
+`At that moment, someone pulled the emergency brake! The train stopped with a loud noise, and the water turned off.`,
+
+`Leo was stuck inside without water!`,
+
+`Also, we thought we had arrived, so we jumped off the train. But we were in the middle of a dark desert at night!`,
+
+`When we arrived at the camp, I knew it had great places—football fields, volleyball courts, and shooting ranges.`,
+
+`We walked inside excitedly and asked a worker for the sports fields. He looked at us and said: “We have no sports fields here!”`,
+
+`At the hostel, some boys were walking in shorts. Even the school principal was wearing shorts!`,
+
+`That night, we went to the Holy Shrine. One guy named Jack got lost.`,
+
+`We found his slippers, but we couldn’t find him!`,
+
+`He called us and said: “I’m at the main shrine!” But he was actually at Panjareh Foolad!`,
+
+`We finally found him and went back.`,
+
+`In our room, we were whispering in bed. The supervisor came in and shouted: “Be quiet!”`,
+
+`He threw four guys out of the room. But when he saw the rest of us were still talking, he turned off the lights and left the room himself!`,
+
+`Since we couldn’t stay quiet, we used our phone flashlights and an empty bottle to play a game and talk and laugh for half an hour until we slept.`,
+
+`The next morning, we wanted to check out the yard. Our room was on the top floor.`,
+
+`We didn’t know that a group of girls had arrived and were staying on the bottom floor.`,
+
+`Three or four of us went outside, and two guys were wearing shorts.`,
+
+`Suddenly, we saw all the girls looking at them!`,
+
+`We ran back inside so fast, and we laughed at those two guys for hours!`,
+
+`Later, we walked to the shrine for breakfast. We walked so much!`,
+
+`In the shrine, they gave free lentil soup. Everyone took one bowl.`,
+
+`Then, our teacher, Mr. Davis, said: “Guys, breakfast is canceled, let’s go!”`,
+
+`Hearing this, everyone quickly drank seven or eight more bowls of soup!`,
+
+`But right after that, the principal walked in and said: “Wait, I talked to them, let’s go inside for breakfast!”`,
+
+`In the afternoon, we went to Koohsangi. Did you know that trains have horns? I didn’t know that until that moment!`,
+
+`At the metro station, we heard a loud horn. I turned around and saw my friend Sam in the middle of the train tracks!`,
+
+`He was almost hit by the train.`,
+
+`The guards pulled him up and gave him a serious warning.`,
+
+`Well… actually, they arrested him and took him away, but let’s just say they gave him a warning!`,
+
+`At Koohsangi Park, Mr. Davis made a challenge: “If you jump and grab that high tree branch, I will buy you a one-meter ice cream!”`,
+
+`As soon as they heard “ice cream,” four guys jumped like hungry leopards and grabbed the branch!`,
+
+`When Mr. Davis saw this, he quickly said: “Okay, the challenge is over! Only these four won!”`,
+
+`So he wouldn’t have to buy ice cream for everyone.`,
+
+`That night, the weather was freezing.`,
+
+`On the way back, someone yelled a bad word, and Mr. Smith got angry and slapped him.`,
+
+`But then he realized that guy wasn’t even from our school!`,
+
+`Later, those four winning guys ate their ice creams in the cold, and the rest of the kids got small ones.`,
+
+`The teachers secretly thought: “If they eat ice cream in this cold, they will get sick and we can cancel tomorrow’s water park trip!”`,
+
+`But they were totally wrong!`,
+
+`After that, we went to the market. One friend bought perfume, one bought glasses, one bought a watch, and one bought a necklace.`,
+
+`The guy with the watch dropped it and broke it, and the guy who had the necklace lost it!`,
+
+`For dinner, we ate a heavy dish called Ba’albaki. It was huge!`,
+
+`One portion was for four people.`,
+
+`We left half of our food to look classy, but we couldn’t leave our big half-empty soda bottle, so we carried that in our hands all the way back!`,
+
+`At the hostel, we played Mafia. Suddenly, we heard a loud glass-breaking sound!`,
+
+`A guy named Alex threw a piece of plastic and broke the double-pane window!`,
+
+`In another event, someone took a photo of our supervisor, Mr. Wilson, while he was saying a prayer and posted it in the group chat, not knowing his son was in the group!`,
+
+`Mr. Wilson saw the photo, and we never saw that student again!`,
+
+`Late at night, a big Turkish man came into our room and shouted angrily: “Who shot my slippers?!”`,
+
+`Everyone was scared. Jack made a joke, which made the man angrier, and he yelled: “Are you looking for trouble?!”`,
+
+`Alex tried to help and said: “Sorry sir, he is a bit crazy, forgive him!”`,
+
+`The man was leaving, but then Leo whispered something.`,
+
+`The man heard a voice but didn’t understand what he said.`,
+
+`He got annoyed and said: “Keep your room door open until 3:00 AM! I will come and check!”`,
+
+`We were shaking with fear until 3:15 AM!`,
+
+`Every time someone walked by, we pretended to be asleep.`,
+
+`The next morning, after a wonderful 3-hour sleep, we put our towels into clear plastic bags without thinking because we were so tired.`,
+
+`Walking around the city holding transparent bags with swimsuits looked so silly!`,
+
+`On the bus, the driver kept stopping suddenly, and students kept falling from the back to the front.`,
+
+`Since I was standing on the steps, I watched the whole wave from above!`,
+
+`Before the water park, we visited a science park.`,
+
+`There was a 700-ton globe that you could lift by hand, and a telescope that cost as much as a car!`,
+
+`At 1:30 PM, we reached the water park.`,
+
+`The line for just one water slide was four floors long!`,
+
+`Near the end, we almost drowned in the wave pool, but we kept saying: “Just one more slide!”`,
+
+`We finally left at 7:34 PM. But the school bus had left at 7:32 PM without us!`,
+
+`Mr. Smith was waiting for us outside, looking very angry.`,
+
+`We tried to get a taxi, but we were 5 people, and drivers said: “Only 4 people allowed!”`,
+
+`When a driver agreed, Mr. Smith offered 60,000 Tomans, but the driver wanted 200,000 Tomans.`,
+
+`Because of this “tiny” price difference, no one picked us up!`,
+
+`Finally, we took the metro back.`,
+
+`Inside the train, we saw the same boy that Mr. Smith had slapped at Koohsangi!`,
+
+`He was sitting right behind us. They talked for a long time. It was so awkward!`,
+
+`When we got back to the hostel, they said: “No dinner for you!”`,
+
+`But Mr. Smith helped us get 3 portions of chicken without rice, which we ate outside.`,
+
+`The next morning at 7:00 AM, we packed our bags and took the train back home.`,
+
+`Even with all the crazy mess, it was the most memorable trip of my life!`
+
+];
+
+
+/* =========================================================
+   TRANSCRIPT ENGINE
+========================================================= */
+
+const transcript=document.getElementById("transcript");
+
+const sentences=transcriptText.map((text,index)=>{
+
+    const el=document.createElement("span");
+
+    el.className="sentence future";
+    el.textContent=text;
+    el.dataset.index=index;
+
+    el.addEventListener("click",()=>{
+
+        if(sentenceTiming.length){
+            video.currentTime=sentenceTiming[index].start;
+        }
+
+    });
+
+    transcript.appendChild(el);
+
+    return el;
+});
+
+
+let sentenceTiming=[];
+
+
+function buildTiming(){
+
+    if(!video.duration || !sentences.length) return;
+
+    const weights=sentences.map(el=>{
+
+        const words=el.textContent.trim().split(/\s+/).length;
+
+        return Math.max(1.8,words*0.43);
+
+    });
+
+    const totalWeight=weights.reduce((a,b)=>a+b,0);
+
+    sentenceTiming=[];
+
+    let time=0;
+
+    weights.forEach(weight=>{
+
+        const duration=
+            video.duration *
+            (weight/totalWeight);
+
+        sentenceTiming.push({
+            start:time,
+            end:time+duration
+        });
+
+        time+=duration;
+
+    });
+
+}
+
+
+video.addEventListener("loadedmetadata",()=>{
+
+    buildTiming();
+
+    updateTranscript();
+
+});
+
+
+/* =========================================================
+   TRANSCRIPT UPDATE
+========================================================= */
+
+let activeIndex=-1;
+
+
+function getActiveIndex(){
+
+    if(!sentenceTiming.length) return 0;
+
+    const t=video.currentTime;
+
+    for(let i=0;i<sentenceTiming.length;i++){
+
+        if(
+            t>=sentenceTiming[i].start &&
+            t<sentenceTiming[i].end
+        ){
+            return i;
+        }
+
+    }
+
+    return sentenceTiming.length-1;
+
+}
+
+
+function updateTranscript(){
+
+    if(!sentenceTiming.length) return;
+
+    const index=getActiveIndex();
+
+    if(index===activeIndex) return;
+
+    activeIndex=index;
+
+    sentences.forEach((el,i)=>{
+
+        el.className="sentence";
+
+        if(i<index-1){
+            el.classList.add("past");
+        }
+        else if(i===index-1){
+            el.classList.add("near-past");
+        }
+        else if(i===index){
+            el.classList.add("active");
+        }
+        else if(i===index+1){
+            el.classList.add("near-future");
+        }
+        else{
+            el.classList.add("future");
+        }
+
+    });
+
+    const active=sentences[index];
+
+    if(active){
+
+        const wrapper=
+            document.querySelector(".transcript-wrapper");
+
+        const wrapperRect=
+            wrapper.getBoundingClientRect();
+
+        const activeRect=
+            active.getBoundingClientRect();
+
+        const offset=
+            activeRect.top-
+            wrapperRect.top-
+            wrapperRect.height*.50;
+
+        const currentTransform=
+            getComputedStyle(transcript).transform;
+
+
+        let currentY=0;
+
+        if(currentTransform!=="none"){
+
+            const matrix=
+                new DOMMatrix(currentTransform);
+
+            currentY=matrix.m42;
+
+        }
+
+        const targetY=currentY-offset;
+
+        transcript.style.transform=
+            `translateY(${targetY}px)`;
+
+    }
+
+}
+
+
+video.addEventListener("timeupdate",()=>{
+
+    updateControls();
+    updateTranscript();
+
+});
+
+
+/* =========================================================
+   KEYBOARD CONTROLS
+========================================================= */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(
+        e.target.tagName==="INPUT" ||
+        e.target.tagName==="SELECT" ||
+        e.target.tagName==="TEXTAREA"
+    ){
+        return;
+    }
+
+    if(e.code==="Space"){
+
+        e.preventDefault();
+        togglePlay();
+
+    }
+
+    else if(e.code==="ArrowLeft"){
+
+        e.preventDefault();
+
+        video.currentTime=
+            Math.max(0,video.currentTime-5);
+
+    }
+
+    else if(e.code==="ArrowRight"){
+
+        e.preventDefault();
+
+        video.currentTime=
+            Math.min(video.duration,video.currentTime+5);
+
+    }
+
+});
+
+
+/* =========================================================
+   DECORATIVE WAVE
+   (Web Audio's createMediaElementSource requires the video
+   to be served with CORS headers. This CDN doesn't send them,
+   so routing real audio through the analyser would silence
+   playback entirely. We use a purely decorative animated wave
+   instead, so the video's native audio always plays normally.)
+========================================================= */
+
+const canvas=document.getElementById("waveCanvas");
+const ctx=canvas.getContext("2d");
+
+
+function resizeCanvas(){
+
+    const rect=canvas.getBoundingClientRect();
+
+    const dpr=window.devicePixelRatio||1;
+
+    canvas.width=rect.width*dpr;
+    canvas.height=rect.height*dpr;
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+}
+
+window.addEventListener("resize",resizeCanvas);
+resizeCanvas();
+
+
+/* =========================================================
+   WAVE RENDER
+========================================================= */
+
+let waveTime=0;
+let waveEnergy=0;
+
+function drawWave(){
+
+    requestAnimationFrame(drawWave);
+
+    const width=canvas.clientWidth;
+    const height=canvas.clientHeight;
+
+    ctx.clearRect(0,0,width,height);
+
+    const center=height/2;
+
+    const targetEnergy=video.paused?0:1;
+    waveEnergy+=(targetEnergy-waveEnergy)*.045;
+
+    if(waveEnergy<.002){
+        return;
+    }
+
+    const level=
+        (
+            .18+
+            Math.sin(waveTime*.9)*.035+
+            Math.sin(waveTime*.47)*.025
+        )*
+        waveEnergy;
+
+
+    const layers=[
+        {
+            amplitude:38,
+            opacity:.14,
+            speed:.65,
+            phase:0
+        },
+        {
+            amplitude:25,
+            opacity:.23,
+            speed:.9,
+            phase:1.8
+        },
+        {
+            amplitude:17,
+            opacity:.35,
+            speed:1.2,
+            phase:3.5
+        },
+        {
+            amplitude:10,
+            opacity:.48,
+            speed:1.5,
+            phase:5
+        }
+    ];
+
+
+    layers.forEach(layer=>{
+
+        ctx.beginPath();
+
+        const points=180;
+
+        for(let i=0;i<=points;i++){
+
+            const x=
+                i/points*width;
+
+            const normalized=
+                i/points;
+
+            const edge=
+                Math.pow(
+                    Math.sin(Math.PI*normalized),
+                    .65
+                );
+
+            const wave1=
+                Math.sin(
+                    normalized*12+
+                    waveTime*layer.speed+
+                    layer.phase
+                );
+
+            const wave2=
+                Math.sin(
+                    normalized*25-
+                    waveTime*.45+
+                    layer.phase*1.7
+                )*.35;
+
+            const wave3=
+                Math.sin(
+                    normalized*5+
+                    waveTime*.28
+                )*.3;
+
+            const y=
+                center+
+                (
+                    wave1+
+                    wave2+
+                    wave3
+                )*
+                layer.amplitude*
+                level*
+                edge;
+
+            if(i===0){
+                ctx.moveTo(x,y);
+            }else{
+                ctx.lineTo(x,y);
+            }
+
+        }
+
+        ctx.strokeStyle=
+            `rgba(37,99,235,${layer.opacity})`;
+
+        ctx.lineWidth=1.2;
+        ctx.lineCap="round";
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        for(let i=0;i<=points;i++){
+
+            const x=i/points*width;
+            const normalized=i/points;
+
+            const edge=
+                Math.pow(
+                    Math.sin(Math.PI*normalized),
+                    .65
+                );
+
+            const wave1=
+                Math.sin(
+                    normalized*12+
+                    waveTime*layer.speed+
+                    layer.phase
+                );
+
+            const wave2=
+                Math.sin(
+                    normalized*25-
+                    waveTime*.45+
+                    layer.phase*1.7
+                )*.35;
+
+            const wave3=
+                Math.sin(
+                    normalized*5+
+                    waveTime*.28
+                )*.3;
+
+            const y=
+                center-
+                (
+                    wave1+
+                    wave2+
+                    wave3
+                )*
+                layer.amplitude*
+                level*
+                edge;
+
+            if(i===0){
+                ctx.moveTo(x,y);
+            }else{
+                ctx.lineTo(x,y);
+            }
+
+        }
+
+        ctx.strokeStyle=
+            `rgba(37,99,235,${layer.opacity*.8})`;
+
+        ctx.lineWidth=1.2;
+        ctx.stroke();
+
+    });
+
+
+    waveTime+=.016;
+
+}
+
+drawWave();
+
+
+/* =========================================================
+   TOUCH SUPPORT
+========================================================= */
+
+let touchStartX=0;
+
+video.addEventListener("touchstart",(e)=>{
+
+    touchStartX=e.touches[0].clientX;
+
+},{passive:true});
+
+
+video.addEventListener("touchend",(e)=>{
+
+    const endX=e.changedTouches[0].clientX;
+    const diff=endX-touchStartX;
+
+    if(Math.abs(diff)>70){
+
+        if(diff>0){
+
+            video.currentTime=
+                Math.max(0,video.currentTime-5);
+
+        }else{
+
+            video.currentTime=
+                Math.min(video.duration,video.currentTime+5);
+
+        }
+
+    }
+
+},{passive:true});
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+window.addEventListener("load",()=>{
+
+    resizeCanvas();
+
+    if(video.readyState>=1){
+        buildTiming();
+        updateTranscript();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
